@@ -1,0 +1,1626 @@
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+	<title>Loja</title>
+
+<style>
+
+
+
+/*
+
+
+
+Config geral
+
+
+
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Muli:400,700&display=swap');
+
+
+
+* {
+
+  box-sizing: border-box;
+
+  font-family: 'Muli', sans-serif;
+
+  margin: 0;
+
+  padding: 0;
+
+
+
+}
+
+html {
+
+  background-color: #E6E6E3;
+
+}
+
+html, body {
+
+  width: 100vw;
+
+}
+
+
+
+ul {
+
+  list-style: none;
+
+}
+
+img, svg {
+
+  max-width: 100%;
+
+height: auto;
+
+}
+
+
+
+h1 {
+
+  font-size: 3rem;
+
+  text-align: center;
+
+}
+
+a {
+
+  text-decoration-style: none;
+
+  text-decoration: none;
+
+  color: inherit;
+
+}
+
+
+
+figure {
+
+  box-sizing: border-box;
+
+  max-width: 100%;
+
+  max-height: 100%;
+
+}
+
+
+
+
+
+.flex {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+}
+
+.row {
+
+  flex-direction: row;
+
+}
+
+.column {
+
+  flex-direction: column;
+
+
+
+}
+
+.center-content {
+
+  justify-content: center;
+
+  align-content: center;
+
+  align-items: center;
+
+}
+
+
+
+
+
+/**icon bar**/
+
+
+
+.menu {
+
+  width:100vw;
+
+  height: 55px;
+
+  padding: 10px 15px;
+
+  background-color: #40357E;
+
+  margin-bottom: 15px;
+
+  position:relative;
+
+
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  align-content: center;
+
+  flex-flow: row nowrap;
+
+}
+
+
+
+.hamb-menu {
+
+  align-self: flex-start;
+
+  flex:1 0 auto;
+
+  padding: 0 15px;
+
+  color: #FFFFFC;
+
+  position: absolute;
+
+  z-index: 5;
+
+  left: 1.5%;
+
+  transform: translate(-1.5%, 0); 
+
+  transform: rotate(180deg);
+
+  transition: all .5s ease-out ;
+
+
+
+}
+
+.hamb-menu.hamb-fixed{
+
+  position: fixed;
+
+
+
+  transform: rotate(-45deg);
+
+  transition: all .5s ease-out ;
+
+
+
+}
+
+
+
+.search-bar {
+
+  align-self: flex-end;
+
+  justify-content: flex-end;
+
+  text-align: center;
+
+  position: relative;
+
+  width: 700px;
+
+  padding-right: .25%;
+
+
+
+
+
+}
+
+.search-bar input[type=search] {
+
+  padding: 7px;
+
+  border-radius: 15px;
+
+  border: none;
+
+  outline: none;
+
+  text-align: center;
+
+  width: 50%;
+
+  font-size: 1.2rem;
+
+  
+
+ }
+
+ .searchButton {
+
+  position: absolute;
+
+  right: 0px;
+
+  padding: 0 5%;
+
+  color: rgba(0,0,0,0.8);
+
+  background:none;
+
+  border: none;
+
+  font-size: 1.8rem;
+
+  margin-right: 10px;
+
+
+
+  outline: none;
+
+  cursor: pointer;
+
+ }
+
+ .home-logo {
+
+display: flex;
+
+align-self: center;
+
+  flex: 1;
+
+  align-content: center;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: absolute;
+
+  left: 50%;
+
+  transform: translate(-50%, 0%);
+
+  
+
+
+
+ }
+
+ .home-logo img {
+
+height:50px;
+
+min-width: 201px;
+
+ }
+
+
+
+
+
+ /****************************************
+
+  
+
+  NAVBAR
+
+
+
+ *******************************************************/
+
+
+
+
+
+.nav-links {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  height: 100vh;
+
+  width: 100%;
+
+background-image: linear-gradient(#40357E, #502171);
+
+  color: #FFFFF5;
+
+  justify-content: flex-start;
+
+  align-items: flex-start;
+
+  clip-path: circle(15px at 50px 2.5%);
+
+  -webkit-clip-path:circle(15px at 3% -3%) ;
+
+  transition: all 1s ease-out;
+
+  z-index: 4;
+
+  pointer-events: none;
+
+}       
+
+.nav-links.open {
+
+  clip-path: circle(40vw at 0 0);
+
+  -webkit-clip-path:circle(40vw at 0 0) ;
+
+  pointer-events: all;
+
+}
+
+.nav-links li {
+
+  opacity: 0;
+
+  font-size: 1.8rem;
+
+}
+
+.nav-links.open li {
+
+width: 30vw;
+
+height: 10vw;
+
+display: flex;
+
+font-size: 1.8rem;
+
+justify-content: center;
+
+align-items: center;
+
+text-align: center;
+
+
+
+transition: all 1s ease-in .5s;
+
+}
+
+.nav-links li.fade {
+
+  opacity: 1;
+
+  font-weight: 700;
+
+
+
+}
+
+
+
+.nav-links li.fade:nth-child(1){
+
+  transition-delay: .2s;
+
+
+
+}
+
+.nav-links li.fade:nth-child(2){
+
+  transition-delay: .4s;
+
+  
+
+}
+
+.nav-links li.fade:nth-child(3){
+
+  transition-delay: .6s;
+
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************************************************************/
+
+
+
+/*Aqui edit das media querries*/
+
+
+
+
+
+@media screen and (max-width: 840px) { .search-bar {display: none; } }
+
+
+
+
+
+@media screen and (max-width: 1024px){
+
+
+
+.nav-links {
+
+
+
+  justify-content: space-around;
+
+  align-items: center;
+
+}
+
+
+
+ .nav-links.open {
+
+clip-path: circle(100vw at 50% 50%);
+
+  -webkit-clip-path: circle(100vw at 50% 50%);
+
+  pointer-events: all;
+
+
+
+}
+
+.nav-links li {
+
+  margin: 0;
+
+  width: auto;
+
+  height: auto;
+
+}
+
+}
+
+
+
+
+
+
+
+	/*-----------------------------------------------------------*/
+
+
+
+/*-----------------------------------------------------------*/
+
+
+
+body {
+
+	flex-wrap: wrap;
+
+	width: 100vw;
+
+	overflow-x: hidden;
+
+}
+
+/*-----------------------------------------------------------*/
+
+
+
+section, .slideshow-container, .news{
+
+	background-color: #E6E6E3;
+
+}
+
+
+
+
+
+
+
+/***********************************************************************************************/
+
+.mySlides {
+
+	display: none;
+
+	border-radius: 25px;
+
+	overflow: hidden;
+
+	  height: 200px;
+
+}
+
+
+
+
+
+/* Slideshow container */
+
+.slideshow-container {
+
+  border-radius: 25px;
+
+  flex: 1 0 auto;
+
+  width: 600px;
+
+  padding: 0 20px;
+
+  height: 200px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  justify-content: center;
+
+
+
+}
+
+
+
+/* Next & previous buttons */
+
+.prev, .next {
+
+  cursor: pointer;
+
+  position: absolute;
+
+  top: 50%;
+
+  width: auto;
+
+  padding: 20px;
+
+  margin-top: -22px;
+
+  color: white;
+
+  font-weight: bold;
+
+  font-size: 18px;
+
+  transition: 0.6s ease;
+
+  border-radius: 0 3px 3px 0;
+
+  user-select: none;
+
+}
+
+
+
+/* Position the "next button" to the right */
+
+.next {
+
+  right: 20px;
+
+  border-radius: 3px 0 0 3px;
+
+}
+
+.prev {
+
+	left: 20px;
+
+}
+
+
+
+/* On hover, add a black background color with a little bit see-through */
+
+.prev:hover, .next:hover {
+
+  background-color: rgba(0,0,0,0.5);
+
+}
+
+
+
+/* The dots/bullets/indicators */
+
+.dot-container {
+
+  position: absolute;
+
+  bottom: 10px;
+
+  text-align: center;
+
+  z-index: 2;
+
+  width: 100%;
+
+
+
+}
+
+.dot {
+
+  cursor: pointer;
+
+  height: 15px;
+
+  width: 15px;
+
+  margin: 0 2px;
+
+  background-color: #bbb;
+
+  border-radius: 50%;
+
+  display: inline-block;
+
+  transition: background-color 0.6s ease;
+
+}
+
+
+
+.active, .dot:hover {
+
+  background-color: #717171;
+
+}
+
+
+
+/* Fading animation */
+
+.fade {
+
+  -webkit-animation-name: fade;
+
+  -webkit-animation-duration: 1.5s;
+
+  animation-name: fade;
+
+  animation-duration: 1.5s;
+
+}
+
+
+
+@-webkit-keyframes fade {
+
+  from {opacity: .4} 
+
+  to {opacity: 1}
+
+}
+
+
+
+@keyframes fade {
+
+  from {opacity: .4} 
+
+  to {opacity: 1}
+
+}
+
+/***********************************************************************************************/
+
+/*NEWS */
+
+
+
+.news {
+
+ flex: 1 0 auto;
+
+ height: 200px;
+
+ justify-content: center;
+
+ 
+
+}
+
+.news a img{
+
+	border-radius: 25px;
+
+	 height: 200px;
+
+
+
+}
+
+.news figure{
+
+	position: relative;
+
+}
+
+.news figcaption {
+
+	position: absolute;
+
+	display: flex;
+
+	justify-content: center;
+
+	align-content: center;
+
+	align-items: center;
+
+	top: 37.5%;
+
+	width: 100%;
+
+	height: 25%;
+
+	font-size: 1.5rem;
+
+	font-weight: 700;
+
+	text-align: center;
+
+	background-color:rgba(255,255,255,.5);
+
+	color: #000;
+
+
+
+
+
+}
+
+
+
+
+
+/* ------
+
+---------      Section 100vw
+
+*/
+
+
+
+
+
+section {
+
+	width: 100%;
+
+	max-width: 100vw;
+
+	margin-bottom: 30vh;
+
+	padding-bottom: 25px;
+
+	padding: 50px;
+
+
+
+
+
+}
+
+
+
+/* --               container da lista de produtos                     */
+
+
+
+.produtos {
+
+	align-self: center;
+
+	padding: 25px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------
+
+---------    container de cada item produto  children tags >>  imagem/descrição/valor 
+
+*/
+
+
+
+
+
+
+
+.itemLoja {
+
+ 	text-align: center;
+
+	box-sizing: border-box;
+
+	width: 300px;
+
+	height: 300px;
+
+	background: #FFFFFC;
+
+	margin: 20px;	
+
+
+
+	border-radius: 25px;
+
+	position: relative;
+
+
+
+}
+
+
+
+/* ----- 
+
+-------- botão de + em cada item  produto 
+
+*/
+
+
+
+.itemLoja::before {
+
+	content: "";
+
+	width: 45px;
+
+	height: 45px;
+
+	border-radius: 50%;
+
+	background-image: url("../_imgs/plus-solid.svg");
+
+	background-color: #00D57A;
+
+	background-repeat: no-repeat;
+
+	-webkit-background-size: contain;
+
+	background-size: contain;
+
+	background-position: center;
+
+	color: #E6E6E3;
+
+	border:8px solid #E6E6E3;
+
+	z-index: 1;
+
+	position: absolute;
+
+	top: -8px;
+
+	right: -8px;
+
+	transition: all .2s ease-out;
+
+
+
+}
+
+
+
+
+
+/* ----- 
+
+ ------- efeito de click/hover
+
+*/
+
+
+
+
+
+.itemLoja:hover::before {
+
+	cursor: pointer;
+
+	transform: scale(1.2);
+
+}
+
+.itemLoja:active::before {
+
+	width: 100%;
+
+	height: 100%;
+
+	transform: none;
+
+	border-radius:25px; 
+
+
+
+
+
+}
+
+
+
+/* -----
+
+-------- cada Child do item produto 
+
+*/
+
+
+
+
+
+.item-img {
+
+	align-self: flex-start;
+
+	margin: auto;
+
+	width: 80%;
+
+}
+
+.item-desc, .item-valor {
+
+	display: flex;
+
+	justify-content: center;
+
+	align-content: center;
+
+	align-items: center;
+
+	flex-flow: row nowrap;
+
+	width: 100%;
+
+	align-self: flex-end;
+
+	margin: .5px;
+
+	height: 22px;
+
+	width: 100%;
+
+}
+
+.item-desc {
+
+	font-weight: 700;
+
+	font-size: 1.1em;
+
+}
+
+.item-valor {
+
+	font-size: .9em;
+
+}
+
+
+
+
+
+/*-----
+
+------- Botão do CARRINHO -----------------
+
+*/
+
+
+
+.cart-icon {
+
+	position: fixed;
+
+	display: flex;
+
+	bottom: 2vmax;
+
+	right: 2vmax;
+
+	width: 70px;
+
+	height: 70px;
+
+	border-radius: 15px;
+
+	z-index: 3;
+
+	font-size: 1.2rem;
+
+	text-align: center;
+
+	box-shadow:   0 0  20px 7px rgba(0,0,0,0.5);
+
+	background-color: #EE0030;
+
+	color: #FFFFFC;
+
+}
+
+.cart-icon a {
+
+	color: #FFFFFC;
+
+}
+
+.container-carrinho {
+
+position: relative;
+
+}
+
+#countCart {
+
+	position: absolute;
+
+	text-align: center;
+
+	top:-25px;
+
+	width: 30px;
+
+	height: 30px;
+
+	background-color:#fff;
+
+	color: #EE0030;
+
+	font-weight: bold;
+
+	font-size: 1.3em;
+
+	border-radius: 50%;
+
+	box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
+
+}
+
+
+
+
+
+
+
+/*
+
+------------------------------------------------------
+
+----------------------- RODAPÉ -----------------------
+
+------------------------------------------------------
+
+*/
+
+
+
+footer {
+
+	color: #f3f3f3;
+
+background-image: -webkit-linear-gradient(#40357E, #502171);
+
+background-image: -o-linear-gradient(#40357E, #502171);
+
+background-image: linear-gradient(#40357E, #502171);
+
+	width: 100vw;
+
+height: 45vh;
+
+	position: fixed;
+
+	bottom: 0;
+
+	z-index: -1;
+
+	justify-content: space-around;
+
+	align-content: flex-end;
+
+}
+
+footer ul {
+
+	padding:  3%;
+
+}
+
+
+
+
+
+/*
+
+*********************************************************************************************
+
+
+
+------------------------               Aqui edit das media querries
+
+
+
+*********************************************************************************************
+
+*/
+
+
+
+@media screen and (max-width: 1370px) {
+
+
+
+	div.itemLoja {
+
+		width: 180px;
+
+
+
+		height: 180px;
+
+	}
+
+
+
+}
+
+@media screen and (min-width:1680px) {
+
+	body {
+
+		justify-content: center;
+
+		align-content: center;
+
+		align-items: center;
+
+		padding: 0;
+
+	}
+
+	section {
+
+		padding: 0 6%;
+
+	}
+
+	.slideshow-container, .news {
+
+		align-self: center;
+
+		max-width: 40%;
+
+	}
+
+}
+
+@media screen and (min-width: 1914px) {
+
+	section {
+
+		padding: 0 7vw;
+
+	}
+
+	.news {
+
+		max-width: 650px;
+
+
+
+	}
+
+	.slideshow-container {
+
+
+
+		max-width: 650px;
+
+	}
+
+
+
+}
+
+
+
+@media screen and (max-width: 375px) {
+
+	body {
+
+		overflow-x: hidden;
+
+	}
+
+
+
+section {
+
+	padding: 0;
+
+}
+
+
+
+.news {
+
+	display: none;
+
+}
+
+
+
+.slideshow-container {
+
+	max-width: 100vw;
+
+}
+
+div.itemLoja {
+
+	width: 100%;
+
+}
+
+
+
+
+
+
+
+}
+
+
+
+</style>
+
+</head>
+<body class="flex">
+
+  <!--  menu  -->
+
+  <div class="menu flex">
+
+    <a class="hamb-menu fa fa-bars fa-2x" href="#"></a>
+
+      
+
+    <div class="home-logo">
+
+      <a href="#"><img src="../_imgs/logo_2.png" alt=""></a>
+
+    </div>
+
+
+
+    <div class="flex  search-bar">
+
+      <input type="search" placeholder="buscar Produto">
+
+      <button type="submit" class="searchButton">
+
+        <i class="fa fa-search"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!--  NAVBAR  -->
+
+
+
+
+
+  <nav> 
+
+    <ul class="flex column nav-links">
+
+      <li><a href="/usuario/profile">Perfil</a></li>
+
+      <li><a href="/usuario/cart">Carrinho</a> </li>  
+
+      <li><a href="#">Logout</a></li>
+
+    </ul>
+
+  </nav>
+
+
+
+  <!--    -->
+
+
+
+  <div class="slideshow-container flex">
+
+    <div class="mySlides fade">     
+
+      <img src="../_imgs/16292.jpg">     
+
+    </div>
+
+    <div class="mySlides fade">
+
+      <img src="../_imgs/3094547.jpg">     
+
+    </div>
+
+    <div class="mySlides fade">     
+
+      <img src="../_imgs/cookies.jpg">     
+
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+
+    <a class="next" onclick="plusSlides(1)">❯</a>
+
+    <div class="dot-container">
+
+      <span class="dot" onclick="currentSlide(1)"></span> 
+
+      <span class="dot" onclick="currentSlide(2)"></span> 
+
+      <span class="dot" onclick="currentSlide(3)"></span> 
+
+    </div>
+
+  </div>
+
+
+
+  <!--    -->
+
+  <div class="news flex">
+
+    <a href="https://mdlzemacao.com/index.php">
+
+      <figure>
+
+        <img src="../_imgs/20181213150828.jpg" alt="">
+
+        <figcaption>Mondelez Em Ação Brasil</figcaption>
+
+      </figure>
+
+    </a>    
+
+  </div>
+
+
+
+  <!--    -->
+
+
+
+  <section class="flex column center-content">
+
+
+
+    <div class="produtos flex center-content">
+
+      <div class="itemLoja flex" onclick="/usuario/store/cart/{{_id}}">
+        {{produtos}}
+
+        <span class="item-img"><img src="../_imgs/sdv.svg" alt=""></span>
+
+        <span class="item-desc">{{description}}</span>
+
+        <span class="item-valor">{{value}}</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/orb.svg" alt=""></span>
+
+        <span class="item-desc">Ouro Branco 1Kg</span>
+
+        <span class="item-valor">R$: 20,00</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/lacbar.svg" alt=""></span>
+
+        <span class="item-desc">Barra Lacta 90g</span>
+
+        <span class="item-valor">R$: 3,00</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/bis.svg" alt=""></span>
+
+        <span class="item-desc">Bis ao Leite 126g</span>
+
+        <span class="item-valor">R$: 3,00</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/bisL.svg" alt=""></span>
+
+        <span class="item-desc">Bis Laka 126g</span>
+
+        <span class="item-valor">R$: 3,00</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/lfav.svg" alt=""></span>
+
+        <span class="item-desc">Lacta Favoritos 250g</span>
+
+        <span class="item-valor">R$: 7,00</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/tangL.svg" alt=""></span>
+
+        <span class="item-desc">Tang laranja 25g</span>
+
+        <span class="item-valor">R$: 0,75</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/tangA.svg" alt=""></span>
+
+        <span class="item-desc">Tang abacaxi 25g</span>
+
+        <span class="item-valor">R$: 0,75</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+        
+        <span class="item-img"><img src="../_imgs/clubSocTrad.svg" alt=""></span>
+
+        <span class="item-desc">dtdtd</span>
+
+        <span class="item-valor">0,00</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/clubSocInt.svg" alt=""></span>
+
+        <span class="item-desc">Club Social integral 144g</span>
+
+        <span class="item-valor">R$: 2,50</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/trident.svg" alt=""></span>
+
+        <span class="item-desc">Trident menta 8g</span>
+
+        <span class="item-valor">R$: 1,00</span>
+
+      </div>
+
+      <div class="itemLoja flex" onclick="addItemCart()">
+
+        <span class="item-img"><img src="../_imgs/halls.svg" alt=""></span>
+
+        <span class="item-desc">Halls extra forte 27g</span>
+
+        <span class="item-valor">R$: 0,75</span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+
+
+  <a id="carrinho" class="cart-icon center-content" href="">
+
+    <div class="container-carrinho">
+
+      <i class="fa fa-shopping-cart fa-2x"></i>
+
+      <span id="countCart">0</span>
+
+    </div>
+
+  </a> 
+
+    <footer class="flex">
+
+
+
+      <ul>
+
+        <li>Lorem ipsum</li>
+
+        <li>Lorem ipsum</li>
+
+      </ul>
+
+      <ul>
+
+        <li>Lorem ipsum</li>
+
+        <li>Lorem ipsum</li> 
+
+      </ul>
+
+      <ul>
+
+        <li>Lorem ipsum</li>
+
+        <li>Lorem ipsum</li>
+
+      </ul>   
+    </footer>
+
+    <script type="text/javascript" src="script.js">
+    </script>
+ 

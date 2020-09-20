@@ -1,0 +1,123 @@
+<style type="text/css">
+	/* ============== definições padrões ==================*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,700&display=swap');
+
+* { overflow-y: hidden; margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif;}
+h1 {
+	font-size: 2.5rem;
+}
+h2 {
+	font-size: 2rem;
+}
+h3 {
+	font-size: 1.7rem;
+}
+
+a {
+	color: #f3f3f3;
+}
+
+
+.flex {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	align-content: center;
+	justify-content: space-around;
+}
+body {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	align-content: center;
+	justify-content: flex-start;
+	width: 100vw;
+	height: 100vh;
+
+}
+
+
+section {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(to right, rgba(255,255,255,0.3) ,rgba(255,255,255,.7)),url(../_imgs/md_front.jpg) no-repeat;
+	background-size: cover;
+}
+
+div#loginContainer {
+	color: #f3f3f3;
+	width: 450px;
+	height: 450px;
+	background-color:  #40357e;
+	flex-direction: column;
+	justify-content: center;
+	border-radius:  25% 0 25% 0;
+	box-shadow: 2px 2px 30px 10px rgba(0,0,0,.7);
+}
+
+span.loginField {
+	flex-direction: column;
+	padding: 5%;
+	width: 100%;
+}
+
+input[type=text],input[type=password]{
+	width: 90%;
+	border-radius: 15px;
+	border:none;
+	align-self: flex-start;
+	text-align: center;
+	outline: none;
+	padding: 1% 5%;
+	font-size: 1.3em;
+	font-weight: bold;
+	color: #3c3c3c;
+}
+input[type=text]:hover,input[type=text]:focus,
+input[type=password]:hover,input[type=password]:focus
+{
+	box-shadow: 0 0 5px 5px rgba(0,0,0,.3);
+}
+label {
+	align-self: center;
+	font-weight: bold;
+	padding: 2.5%;
+}
+button {
+	padding: 5px 20px;
+	color: #fff;
+	font-weight: bold;
+	background: rgba(0,0,0,0);
+	margin-bottom: 3%;
+	border: 2px solid rgba(255,255,255,0.5);
+	border-radius: 15px;
+	width: 50%;
+	cursor: pointer;
+}
+</style>
+{{#each erros}}
+</br>
+	<div class="alert alert-danger mt-4">{{texto}}</div>
+{{else}}
+{{/each}}
+<section class="flex">
+		<form  action="" method= "POST">
+			<div id="loginContainer" class="flex">
+				<span id="login" class="flex loginField">
+					<label for="login"> Usuário: </label>
+					<input id="login" name="login" type="text" autocomplete="on" >
+				</span>
+				<span id="password" class="flex loginField">
+					<label for="password">Senha: </label>
+					<input id="password" name="password" type="password" autocomplete="on" >
+				</span>
+				<button type ="submit"> Login </button>
+				<a href="" onclick="burro()" >Esqueci minha senha</a>
+			</div>
+		</form>
+</section>
+<script>	
+function burro(){
+	alert('Entre em contato com o RH para recuperar sua senha.')
+}
+</script>
